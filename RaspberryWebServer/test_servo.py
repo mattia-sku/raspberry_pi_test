@@ -1,6 +1,6 @@
 from servoClass import servoClass
 
-servo = servoClass()
+servo = servoClass(11)
 
 # Loop to allow user to set servo angle. Try/finally allows exit
 # with execution of servo.stop and GPIO cleanup :)

@@ -9,6 +9,7 @@ class servoClass:
         # Set pin (pinNumber) as an output, and define as servo as PWM pin
         GPIO.setup(pinNumber,GPIO.OUT)
         self.servo = GPIO.PWM(pinNumber,50) # pin (pinNumber) for servo, pulse 50Hz
+        self.gotoAngle(20)
 
     def gotoAngle(self, angle):
         self.servo.ChangeDutyCycle(2+(angle/18))

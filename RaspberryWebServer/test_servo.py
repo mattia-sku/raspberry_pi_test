@@ -1,4 +1,4 @@
-import servoClass
+from servoClass import servoClass
 
 servo = servoClass()
 

@@ -1,0 +1,204 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_02x06_Odd_Even J?
+U 1 1 6131562D
+P 7950 2450
+F 0 "J?" H 8000 2867 50  0000 C CNN
+F 1 "Raspberry pi" H 8000 2776 50  0000 C CNN
+F 2 "" H 7950 2450 50  0001 C CNN
+F 3 "~" H 7950 2450 50  0001 C CNN
+	1    7950 2450
+	1    0    0    -1  
+$EndComp
+Text Notes 7400 2750 0    59   ~ 0
+3v3\nGPIO2\nGPIO3\nGPIO4\nGND\nGPIO17
+Text Notes 8300 2750 0    59   ~ 0
+5v\n5v\nGND\nGPIO14\nGPIO15\nGPIO18
+$Comp
+L power:+5V #PWR0101
+U 1 1 6131C0A8
+P 6650 4250
+F 0 "#PWR0101" H 6650 4100 50  0001 C CNN
+F 1 "+5V" H 6665 4423 50  0000 C CNN
+F 2 "" H 6650 4250 50  0001 C CNN
+F 3 "" H 6650 4250 50  0001 C CNN
+	1    6650 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 6131CAAB
+P 7050 4000
+F 0 "#PWR0102" H 7050 3750 50  0001 C CNN
+F 1 "GND" H 7055 3827 50  0000 C CNN
+F 2 "" H 7050 4000 50  0001 C CNN
+F 3 "" H 7050 4000 50  0001 C CNN
+	1    7050 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7750 2650 7050 2650
+Wire Wire Line
+	7050 2650 7050 4000
+Wire Wire Line
+	7050 2200 7050 2650
+Connection ~ 7050 2650
+Wire Wire Line
+	5800 3650 5800 3950
+Wire Wire Line
+	5800 3950 6650 3950
+Wire Wire Line
+	6650 3950 6650 4250
+$Comp
+L Motor:Motor_DC M?
+U 1 1 613314F9
+P 6200 2550
+F 0 "M?" H 6042 2454 50  0000 R CNN
+F 1 "Motor_DC" H 6042 2545 50  0000 R CNN
+F 2 "" H 6200 2460 50  0001 C CNN
+F 3 "~" H 6200 2460 50  0001 C CNN
+	1    6200 2550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6200 2250 6200 2200
+Wire Wire Line
+	6200 2850 6200 2750
+NoConn ~ 7750 2550
+NoConn ~ 7750 2250
+NoConn ~ 8250 2250
+NoConn ~ 8250 2350
+NoConn ~ 8250 2450
+NoConn ~ 8250 2550
+NoConn ~ 8250 2650
+NoConn ~ 8250 2750
+NoConn ~ 7750 2750
+$Comp
+L Device:R R1000
+U 1 1 613366D6
+P 5300 3450
+F 0 "R1000" V 5093 3450 50  0000 C CNN
+F 1 "R" V 5184 3450 50  0000 C CNN
+F 2 "" V 5230 3450 50  0001 C CNN
+F 3 "~" H 5300 3450 50  0001 C CNN
+	1    5300 3450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5450 3450 5500 3450
+$Comp
+L pspice:DIODE D?
+U 1 1 61338E1D
+P 5800 2550
+F 0 "D?" V 5846 2422 50  0000 R CNN
+F 1 "DIODE" V 5755 2422 50  0000 R CNN
+F 2 "" H 5800 2550 50  0001 C CNN
+F 3 "~" H 5800 2550 50  0001 C CNN
+	1    5800 2550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5800 3250 5800 2850
+Wire Wire Line
+	5800 2850 6200 2850
+Wire Wire Line
+	5800 2850 5800 2750
+Connection ~ 5800 2850
+Wire Wire Line
+	5800 2350 5800 2200
+Wire Wire Line
+	5800 2200 6200 2200
+$Comp
+L Device:R R1000
+U 1 1 61342A46
+P 3800 3450
+F 0 "R1000" V 3593 3450 50  0000 C CNN
+F 1 "R" V 3684 3450 50  0000 C CNN
+F 2 "" V 3730 3450 50  0001 C CNN
+F 3 "~" H 3800 3450 50  0001 C CNN
+	1    3800 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:LED D?
+U 1 1 61343942
+P 4650 2650
+F 0 "D?" V 4597 2730 50  0000 L CNN
+F 1 "LED" V 4688 2730 50  0000 L CNN
+F 2 "" H 4650 2650 50  0001 C CNN
+F 3 "~" H 4650 2650 50  0001 C CNN
+	1    4650 2650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7750 2350 7250 2350
+Wire Wire Line
+	7250 2350 7250 1900
+Wire Wire Line
+	7250 1900 3650 1900
+Wire Wire Line
+	3650 1900 3650 3450
+$Comp
+L Transistor_BJT:2N2219 Q?
+U 1 1 613492F0
+P 4550 3450
+F 0 "Q?" H 4740 3496 50  0000 L CNN
+F 1 "2N2219" H 4740 3405 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-39-3" H 4750 3375 50  0001 L CIN
+F 3 "http://www.onsemi.com/pub_link/Collateral/2N2219-D.PDF" H 4550 3450 50  0001 L CNN
+	1    4550 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:2N2219 Q?
+U 1 1 6134ACBB
+P 5700 3450
+F 0 "Q?" H 5890 3496 50  0000 L CNN
+F 1 "2N2219" H 5890 3405 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-39-3" H 5900 3375 50  0001 L CIN
+F 3 "http://www.onsemi.com/pub_link/Collateral/2N2219-D.PDF" H 5700 3450 50  0001 L CNN
+	1    5700 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 3950 4650 3950
+Wire Wire Line
+	4650 3950 4650 3650
+Connection ~ 5800 3950
+Wire Wire Line
+	4650 3250 4650 2800
+Wire Wire Line
+	4350 3450 3950 3450
+Wire Wire Line
+	7050 2200 6200 2200
+Connection ~ 6200 2200
+Wire Wire Line
+	4650 2500 4650 2200
+Wire Wire Line
+	4650 2200 5800 2200
+Connection ~ 5800 2200
+Wire Wire Line
+	5150 3450 5000 3450
+Wire Wire Line
+	5000 3450 5000 2050
+Wire Wire Line
+	5000 2050 7150 2050
+Wire Wire Line
+	7150 2050 7150 2450
+Wire Wire Line
+	7150 2450 7750 2450
+$EndSCHEMATC

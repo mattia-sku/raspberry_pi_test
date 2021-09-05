@@ -1,8 +1,6 @@
-# Import libraries
 import RPi.GPIO as GPIO
-import time
 
-class servoClass:
+class PMWBase:
     def __init__(self, pinNumber):
         # Set GPIO numbering mode
         GPIO.setmode(GPIO.BOARD)
@@ -10,12 +8,9 @@ class servoClass:
         GPIO.setup(pinNumber,GPIO.OUT)
         self.servo = GPIO.PWM(pinNumber,50) # pin (pinNumber) for servo, pulse 50Hz
         self.servo.start(0)
-        self.gotoAngle(20)
 
-    def gotoAngle(self, angle):
-        self.servo.ChangeDutyCycle(2+(angle/18))
-        time.sleep(0.5)
-        self.servo.ChangeDutyCycle(0)
+    def ChangeDutyCycle(self, pulse):
+        self.servo.ChangeDutyCycle(pulse)
 
     def __del__(self):
         #finalize

@@ -1,4 +1,3 @@
-# Import libraries
 import RPi.GPIO as GPIO
 import time
 
@@ -17,5 +16,6 @@ class LedClass:
 
     def __del__(self):
         #finalize
+        GPIO.output(self.pinNumber,GPIO.LOW)
         GPIO.cleanup()
         print("destructor called")

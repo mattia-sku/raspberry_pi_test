@@ -1,4 +1,4 @@
-from servoClass import servoClass
+from coreClasses.servoClass import servoClass
 
 servo = servoClass(11)
 

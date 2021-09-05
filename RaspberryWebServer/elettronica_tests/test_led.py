@@ -1,4 +1,4 @@
-from ledClass import LedClass
+from coreClasses.ledClass import LedClass
 
 led = LedClass(7)
 

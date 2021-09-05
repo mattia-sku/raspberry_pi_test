@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from PMWbase import PMWBase
+from PMWbase.PMWBase import PMWBase
 import time
 
 class servoClass(PMWBase):

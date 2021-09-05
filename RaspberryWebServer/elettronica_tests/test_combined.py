@@ -1,13 +1,20 @@
 from coreClasses.servoClass import servoClass
-from coreClasses.ledClass import ledClass
-import asyncio
+from coreClasses.ledClass import LedClass
 
-async def process():
-    servo = servoClass(7)
-    led = ledClass(11)
+#import RPi.GPIO as GPIO
+from coreClasses.fakeGpio import GPIO
 
-    led.turnOnOff(True)
-    await servo.rotateControlled(10,10)
-    led.turnOnOff(False)
 
-asyncio.run(process())
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup([7,11],GPIO.OUT)
+
+servo = servoClass(7)
+led = LedClass(11)
+
+led.turnOnOff(True)
+servo.rotateControlled(10,10)
+led.turnOnOff(False)
+
+
+
+GPIO.cleanup([7,11])

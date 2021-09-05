@@ -1,11 +1,8 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
+from coreClasses.fakeGpio import GPIO
 
 class PMWBase:
     def __init__(self, pinNumber):
-        # Set GPIO numbering mode
-        GPIO.setmode(GPIO.BOARD)
-        # Set pin (pinNumber) as an output, and define as servo as PWM pin
-        GPIO.setup(pinNumber,GPIO.OUT)
         self.servo = GPIO.PWM(pinNumber,50) # pin (pinNumber) for servo, pulse 50Hz
         self.servo.start(0)
 
@@ -15,5 +12,3 @@ class PMWBase:
     def __del__(self):
         #finalize
         self.servo.stop()
-        GPIO.cleanup()
-        print("destructor called")

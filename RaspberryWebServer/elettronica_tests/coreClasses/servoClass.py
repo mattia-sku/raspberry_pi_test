@@ -1,13 +1,12 @@
-import RPi.GPIO as GPIO
-from PMWbase.PMWBase import PMWBase
 import time
+from coreClasses.pmwBase import PMWBase
 
 class servoClass(PMWBase):
 
     fullDegrees = 180
 
     def __init__(self, pinNumber):
-        super(self, pinNumber)
+        PMWBase.__init__(self, pinNumber)
 
     def angleToPulse(self, angle):
         return 2+(angle/18)
@@ -23,11 +22,11 @@ class servoClass(PMWBase):
         time.sleep(0.5)
         self.stabilize()
 
-    async def rotateControlled(self,steps,time):
+    def rotateControlled(self,steps,totalTime):
         if(steps <= 0):
             raise Exception("steps MUST be greater than zero")
 
-        singleStepTime = time / steps
+        singleStepTime = totalTime / steps
         singleStepDegree = self.fullDegrees / steps
 
         currentDegree = 0

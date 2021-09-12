@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebServerCloud.Models.ViewModels.OrdineIndex>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ordini</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Ordine
+            </th>
+            <th>
+                RagioneSociale
+            </th>
+            <th>
+                DataCaricamento
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.OrderId
+            </td>
+            <td>
+                @item.RagioneSociale
+            </td>
+            <td>
+                @item.DataCaricamento
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

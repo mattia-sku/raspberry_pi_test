@@ -1,1 +1,5 @@
 RaspberryWebServer/__pycache__/servoClass.cpython-38.pyc
+*.dll
+WebServerCloud/WebServerCloud/obj/Release/*
+WebServerCloud/WebServerCloud/obj/Debug/*
+WebServerCloud/WebServerCloud/bin/Release/netcoreapp3.1/publish/*

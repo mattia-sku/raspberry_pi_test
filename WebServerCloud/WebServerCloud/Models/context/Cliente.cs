@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebServerCloud.Models
 {
-    public class UtenteProtesi
+    public class Cliente
     {
         public Guid Id { get; set; }
         public string Iniziali { get; set; }

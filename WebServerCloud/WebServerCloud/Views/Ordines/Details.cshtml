@@ -10,11 +10,16 @@
     <h4>Ordine</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Video)
+        <dt class="col-sm-2">
+            Video
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Video)
+        <dd class="col-sm-8 d-flex justify-content-center">
+            <video controls="controls">
+                <source src="~/videos/@Model.VideoName" type="video/mp4" />
+            </video>
+        </dd>
+        <dd class="col-sm-2">
+            <a href="~/videos/@Model.VideoName" download>Download video</a>
         </dd>
     </dl>
 </div>

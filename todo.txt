@@ -1,0 +1,13 @@
+informazioni_tenant
+	AudioProtesista
+	TelCell
+	Mail
+	Rag_soc
+	ip_stampante
+
+nella testata ordini
+
+status:
+	non fatto
+	inviato
+	stampato

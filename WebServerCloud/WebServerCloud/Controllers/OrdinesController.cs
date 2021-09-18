@@ -53,12 +53,18 @@ namespace WebServerCloud.Controllers
             return View(ordine);
         }
 
+        [HttpGet("video/{id}")]
+        public IActionResult GetVideo(Guid? id)
+        {
+            return PhysicalFile($"awesomeVideo.mp4", "application/octet-stream", enableRangeProcessing: true);
+        }
+
         // POST: Ordines/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Video")] Ordine ordine)
+        public async Task<IActionResult> Create([FromBody] Ordine ordine)
         {
             if (ModelState.IsValid)
             {

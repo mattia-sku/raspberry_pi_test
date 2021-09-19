@@ -40,6 +40,8 @@ def create_app(test_config=None):
         fourcc = cv.VideoWriter_fourcc(*'XVID')
         if capture:
             out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
+            led = LED(4)
+            led.on()
         i = 0
 
         bypass = True
@@ -58,24 +60,19 @@ def create_app(test_config=None):
                         yield (b'--frame\r\n'
                             b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n\r\n')
                 i += 1
+            if capture:
+                led.off()
         finally:
             if capture:
                 out.release()
             cap.release()
             cv.destroyAllWindows()
-    
-    async def rotate():
-        led = LED(4)
-        led.on()
-        sleep(10)
-        led.off()
 
     @app.route('/video_feed')
     def video_feed():
         return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
     @app.route('/video_feed_capture')
     def video_feed_capture():
-        rotate()
         return Response(gen(True), mimetype='multipart/x-mixed-replace; boundary=frame')
 
     @app.route('/review')

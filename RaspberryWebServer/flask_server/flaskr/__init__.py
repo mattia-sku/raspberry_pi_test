@@ -111,8 +111,8 @@ def create_app(test_config=None):
 
     
     @app.route('/test_rasp/<value>')
-    def test_rasp(value=0.1):       
-
+    def test_rasp(value="0.1"):       
+        value = float(value)
         if value > 1 or value < 0:
             return 'wrong input'
 

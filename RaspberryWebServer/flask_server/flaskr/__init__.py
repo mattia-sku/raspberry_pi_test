@@ -108,11 +108,22 @@ def create_app(test_config=None):
 
     
     @app.route('/test_rasp')
-    def test_rasp():
+    def test_rasp():        
+        cap = cv.VideoCapture(0)
+        fourcc = cv.VideoWriter_fourcc(*'XVID')
+        out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
         led = LED(4)
         led.on()
+        for i in range(0,600):
+            ret, frame = cap.read()
+            if ret:
+                ret, buffer = cv.imencode('.jpg', frame)  
+                out.write(frame)
         sleep(10)
         led.off()
+        out.release()
+        cap.release()
+        cv.destroyAllWindows()
         return 'hello'
 
     return app

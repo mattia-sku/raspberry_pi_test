@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, Response
 import numpy as np
 import cv2 as cv
-from gpiozero import LED
+from gpiozero import PWMLED
 from time import sleep
 import asyncio
 
@@ -116,14 +116,14 @@ def create_app(test_config=None):
         cap = cv.VideoCapture(0)
         fourcc = cv.VideoWriter_fourcc(*'XVID')
         out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
-        led = LED(4)
-        led.on()
+        led = PWMLED(4)
+        led.value = 0.5
         for i in range(0,600):
             ret, frame = cap.read()
             if ret:
                 ret, buffer = cv.imencode('.jpg', frame)  
                 out.write(frame)
-        led.off()
+        led.value = 0
         out.release()
         cap.release()
         cv.destroyAllWindows()

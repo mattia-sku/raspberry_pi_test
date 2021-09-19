@@ -36,6 +36,7 @@ def create_app(test_config=None):
         return render_template('index.html')
 
     def gen():
+        cv.destroyAllWindows()
         cap = cv.VideoCapture(0)
         fourcc = cv.VideoWriter_fourcc(*'XVID')
 
@@ -52,6 +53,7 @@ def create_app(test_config=None):
             cv.destroyAllWindows()
 
     def gen_capture():
+        cv.destroyAllWindows()
         cap = cv.VideoCapture(0)
         fourcc = cv.VideoWriter_fourcc(*'XVID')
         out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
@@ -85,6 +87,7 @@ def create_app(test_config=None):
         return render_template('review.html')
 
     def gen_review():
+        cv.destroyAllWindows()
         try:
             while True:
                 cap = cv.VideoCapture('flaskr/static/video_output.avi')
@@ -108,7 +111,8 @@ def create_app(test_config=None):
 
     
     @app.route('/test_rasp')
-    def test_rasp():        
+    def test_rasp():       
+        cv.destroyAllWindows() 
         cap = cv.VideoCapture(0)
         fourcc = cv.VideoWriter_fourcc(*'XVID')
         out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
@@ -119,7 +123,6 @@ def create_app(test_config=None):
             if ret:
                 ret, buffer = cv.imencode('.jpg', frame)  
                 out.write(frame)
-        sleep(10)
         led.off()
         out.release()
         cap.release()

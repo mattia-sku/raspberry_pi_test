@@ -106,4 +106,13 @@ def create_app(test_config=None):
     def review_video():
         return Response(gen_review(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+    
+    @app.route('/test_rasp')
+    def test_rasp():
+        led = LED(4)
+        led.on()
+        sleep(10)
+        led.off()
+        return 'hello'
+
     return app

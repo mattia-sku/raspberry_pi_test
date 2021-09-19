@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, jsonify
 import numpy as np
 import cv2 as cv
 from gpiozero import PWMLED
@@ -114,7 +114,7 @@ def create_app(test_config=None):
     def test_rasp(value="0.1"):       
         value = float(value)
         if value > 1 or value < 0:
-            return {'error':'value must be between 0 and 1'}
+            return jsonify({'error':'value must be between 0 and 1'})
 
         cv.destroyAllWindows() 
         cap = cv.VideoCapture(0)
@@ -131,6 +131,6 @@ def create_app(test_config=None):
         out.release()
         cap.release()
         cv.destroyAllWindows()
-        return {'success':'success'}
+        return jsonify({'success':'success'})
 
     return app

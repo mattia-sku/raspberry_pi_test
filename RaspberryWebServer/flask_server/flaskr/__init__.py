@@ -65,7 +65,7 @@ def create_app(test_config=None):
             cv.destroyAllWindows()
     
     async def rotate():
-        led = LED(2)
+        led = LED(4)
         led.on()
         sleep(10)
         led.off()

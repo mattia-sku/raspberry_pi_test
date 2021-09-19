@@ -121,7 +121,7 @@ def create_app(test_config=None):
         fourcc = cv.VideoWriter_fourcc(*'XVID')
         out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
         led = PWMLED(4)
-        led.value = 0.5
+        led.value = value
         for i in range(0,600):
             ret, frame = cap.read()
             if ret:

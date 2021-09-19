@@ -114,7 +114,7 @@ def create_app(test_config=None):
     def test_rasp(value="0.1"):       
         value = float(value)
         if value > 1 or value < 0:
-            return 'wrong input'
+            return {'error':'value must be between 0 and 1'}
 
         cv.destroyAllWindows() 
         cap = cv.VideoCapture(0)
@@ -131,6 +131,6 @@ def create_app(test_config=None):
         out.release()
         cap.release()
         cv.destroyAllWindows()
-        return 'hello'
+        return {'success':'success'}
 
     return app

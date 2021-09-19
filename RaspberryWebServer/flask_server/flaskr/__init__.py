@@ -35,36 +35,41 @@ def create_app(test_config=None):
     def hello():
         return render_template('index.html')
 
-    def gen(capture=False):
+    def gen():
         cap = cv.VideoCapture(0)
         fourcc = cv.VideoWriter_fourcc(*'XVID')
-        if capture:
-            out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
-            led = LED(4)
-            led.on()
-        i = 0
-
-        bypass = True
-
-        if capture:
-            bypass = False
 
         try:
-            while bypass or i < 600:
+            while True:
                 ret, frame = cap.read()
                 if ret:
                     ret, buffer = cv.imencode('.jpg', frame)  
-                    if capture:          
-                        out.write(frame)
                     if ret:
                         yield (b'--frame\r\n'
                             b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n\r\n')
-                i += 1
-            if capture:
-                led.off()
         finally:
-            if capture:
-                out.release()
+            cap.release()
+            cv.destroyAllWindows()
+
+    def gen_capture():
+        cap = cv.VideoCapture(0)
+        fourcc = cv.VideoWriter_fourcc(*'XVID')
+        out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
+        led = LED(4)
+        led.on()
+
+        try:
+            for i in range(0,600):
+                ret, frame = cap.read()
+                if ret:
+                    ret, buffer = cv.imencode('.jpg', frame)  
+                    out.write(frame)
+                    if ret:
+                        yield (b'--frame\r\n'
+                            b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n\r\n')
+            led.off()
+        finally:
+            out.release()
             cap.release()
             cv.destroyAllWindows()
 
@@ -73,7 +78,7 @@ def create_app(test_config=None):
         return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
     @app.route('/video_feed_capture')
     def video_feed_capture():
-        return Response(gen(True), mimetype='multipart/x-mixed-replace; boundary=frame')
+        return Response(gen_capture(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
     @app.route('/review')
     def review():

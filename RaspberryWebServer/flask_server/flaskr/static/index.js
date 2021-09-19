@@ -1,6 +1,5 @@
-function buttonClick () {
+async function buttonClick () {
   let value = document.getElementById('quantity').innerText;
-  fetch(`/test_rasp/${value}`).then(() => {
-    window.location.href = '/review';
-  });
+  await fetch(`/test_rasp/${value}`);
+  window.location.href = '/review';
 }

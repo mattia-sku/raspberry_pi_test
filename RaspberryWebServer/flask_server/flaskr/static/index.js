@@ -1,7 +1,6 @@
 function buttonClick () {
-  document.querySelector('img').src = '/video_feed_capture';
-
-  window.setTimeout(() => {
+  let value = document.getElementById('quantity').innerText;
+  fetch(`/test_rasp/${value}`).then(() => {
     window.location.href = '/review';
-  }, 10000);
+  });
 }

@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <button onclick="buttonClick()">
-        registra
-    </button>
-    <img src="{{ url_for('video_feed') }}"></img>
+    <div>
+        <button onclick="buttonClick()">
+            registra
+        </button>
+    </div>
+    <div>
+        <input type="number" id="quantity" min="0" max="1">
+    </div>
 </body>
 </html>

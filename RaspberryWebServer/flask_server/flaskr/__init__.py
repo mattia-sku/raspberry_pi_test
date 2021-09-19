@@ -110,8 +110,12 @@ def create_app(test_config=None):
         return Response(gen_review(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
     
-    @app.route('/test_rasp')
-    def test_rasp():       
+    @app.route('/test_rasp/<value>')
+    def test_rasp(value=0.1):       
+
+        if value > 1 or value < 0:
+            return 'wrong input'
+
         cv.destroyAllWindows() 
         cap = cv.VideoCapture(0)
         fourcc = cv.VideoWriter_fourcc(*'XVID')

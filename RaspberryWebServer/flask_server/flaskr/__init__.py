@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, Response, jsonify
 import numpy as np
 import cv2 as cv
-from gpiozero import PWMLED
+from gpiozero import LED
 from time import sleep
 import asyncio
 
@@ -110,24 +110,20 @@ def create_app(test_config=None):
         return Response(gen_review(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
     
-    @app.route('/test_rasp/<value>')
-    def test_rasp(value="0.1"):       
-        value = float(value)
-        if value > 1 or value < 0:
-            return jsonify({'error':'value must be between 0 and 1'})
-
+    @app.route('/test_rasp')
+    def test_rasp():       
         cv.destroyAllWindows() 
         cap = cv.VideoCapture(0)
         fourcc = cv.VideoWriter_fourcc(*'XVID')
         out = cv.VideoWriter('./flaskr/static/video_output.avi', fourcc, 60.0, (640,  480))
-        led = PWMLED(4)
-        led.value = value
+        led = LED(4)
+        led.on()
         for i in range(0,600):
             ret, frame = cap.read()
             if ret:
                 ret, buffer = cv.imencode('.jpg', frame)  
                 out.write(frame)
-        led.value = 0
+        led.off()
         out.release()
         cap.release()
         cv.destroyAllWindows()

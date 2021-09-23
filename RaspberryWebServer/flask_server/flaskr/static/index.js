@@ -1,6 +1,6 @@
 async function buttonClick () {
-  let value = document.getElementById('quantity').value;
-  fetch(`/test_rasp/${value}`).then(res => res.json()).then(_ => {
+  document.querySelector('button').disabled = true;
+  fetch(`/test_rasp`).then(res => res.json()).then(_ => {
     window.location.href = '/review';
   });
 }
